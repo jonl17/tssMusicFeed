@@ -1,0 +1,7 @@
+@font-face {
+  font-family: Zig;
+  src: url("./zig.ttf");
+}
+* {
+  font-family: Zig;
+}
