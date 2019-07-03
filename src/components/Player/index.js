@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Logo, Letter } from "./Styled"
+import { Container, Controls } from "./Styled"
 
 import { playlist } from "../constants"
 
@@ -8,42 +8,38 @@ import { turnSwitch } from "../../state/actions"
 
 class Player extends React.Component {
   handlePlay() {
+    const { theswitch, dispatch } = this.props
     this.audio.play()
-    if (this.props.theswitch !== `on`) this.props.dispatch(turnSwitch())
+    if (theswitch !== `on`) dispatch(turnSwitch())
   }
   handlePause() {
+    const { theswitch, dispatch } = this.props
     this.audio.pause()
-    if (this.props.theswitch !== `off`) this.props.dispatch(turnSwitch())
+    if (theswitch !== `off`) dispatch(turnSwitch())
   }
   render() {
     const { theswitch } = this.props
     return (
       <Container>
-        <Logo>
-          <Letter theswitch={theswitch} delay={0}>
-            T
-          </Letter>
-          <Letter theswitch={theswitch} delay={0.25}>
-            S
-          </Letter>
-          <Letter theswitch={theswitch} delay={0.5}>
-            S
-          </Letter>
-        </Logo>
-        <div>
+        <Controls>
           <audio
             ref={audio => {
               this.audio = audio
             }}
             src={playlist[0].src}
           />
-        </div>
-        <input type="button" value="GO" onClick={this.handlePlay.bind(this)} />
-        <input
-          type="button"
-          value="HOLD IT"
-          onClick={this.handlePause.bind(this)}
-        />
+          <input
+            type="button"
+            value="PLAY"
+            onClick={this.handlePlay.bind(this)}
+          />
+          <input
+            type="button"
+            value="PAUSE"
+            onClick={this.handlePause.bind(this)}
+          />
+        </Controls>
+        <p>Playing: {theswitch === `on` ? playlist[0].title : ""}</p>
       </Container>
     )
   }

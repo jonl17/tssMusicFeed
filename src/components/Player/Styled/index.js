@@ -1,27 +1,19 @@
-import styled, { css, keyframes } from "styled-components"
-
-const glow = keyframes`
-  from {
-  }
-  to {
-    color: hotpink;
-  }
-`
+import styled from "styled-components"
 
 export const Container = styled.div`
-  grid-area: right;
-`
-export const Logo = styled.h1`
-  text-align: center;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
   width: 100%;
-  font-size: 100px;
-  display: flex;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+
+  background-color: rgb(16, 16, 16);
+  color: gold;
 `
-export const Letter = styled.span`
-  margin: auto;
-  ${props =>
-    props.theswitch === `on` &&
-    css`
-      animation: ${glow} 0.5s ease ${props => props.delay}s infinite alternate;
-    `}
+export const Controls = styled.div`
+  justify-self: center;
 `

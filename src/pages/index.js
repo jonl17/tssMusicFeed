@@ -3,12 +3,14 @@ import { graphql } from "gatsby"
 import Container from "../components/Container"
 import Image from "../components/Image"
 import Player from "../components/Player"
+import Logo from "../components/Logo"
 import "./index.css"
 
 export default ({ data }) => {
   const { node } = data.allImageSharp.edges[0]
   return (
     <Container>
+      <Logo />
       <Player />
       <Image fluid={node.fluid} />
     </Container>
