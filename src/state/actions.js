@@ -4,8 +4,9 @@ export const turnSwitch = () => ({
 })
 
 export const GET_PLAYLIST = "GET_PLAYLIST"
-export const getPlaylist = () => ({
+export const getPlaylist = playlist => ({
   type: GET_PLAYLIST,
+  playlist,
 })
 
 export const CHANGE_SONG = "CHANGE_SONG"

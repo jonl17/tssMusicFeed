@@ -1,8 +1,6 @@
 import React from "react"
 import { Container, Controls } from "./Styled"
 
-import { playlist } from "../constants"
-
 import { connect } from "react-redux"
 import { turnSwitch } from "../../state/actions"
 
@@ -18,7 +16,10 @@ class Player extends React.Component {
     if (theswitch !== `off`) dispatch(turnSwitch())
   }
   render() {
-    const { theswitch, trackChosen } = this.props
+    const { theswitch, trackChosen, playlist } = this.props
+    if (playlist[trackChosen] !== undefined) {
+      console.log(playlist[trackChosen].src)
+    }
     return (
       <Container>
         <Controls>
@@ -26,7 +27,11 @@ class Player extends React.Component {
             ref={audio => {
               this.audio = audio
             }}
-            src={playlist[trackChosen].src}
+            src={
+              playlist[trackChosen] !== undefined
+                ? playlist[trackChosen].src.relativePath
+                : ""
+            }
           />
           <input
             type="button"
@@ -39,7 +44,13 @@ class Player extends React.Component {
             onClick={this.handlePause.bind(this)}
           />
         </Controls>
-        <p>Playing: {theswitch === `on` ? playlist[trackChosen].title : ""}</p>
+        <p>
+          Track chosen:
+          {playlist[trackChosen] !== undefined
+            ? playlist[trackChosen].title
+            : ""}
+        </p>
+        <p>Next</p>
       </Container>
     )
   }
@@ -47,6 +58,7 @@ class Player extends React.Component {
 
 const mapStateToProps = state => ({
   theswitch: state.reducer.theswitch,
+  playlist: state.reducer.playlist,
   trackChosen: state.reducer.trackChosen,
 })
 
