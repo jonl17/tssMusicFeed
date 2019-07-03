@@ -32,5 +32,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
+    // {
+    //   resolve: `gatsby-source-graphql`,
+    //   options: {
+    //     typeName: `TUNES`,
+    //     fieldName: `tssMusic`,
+    //     url: ``,
+    //   },
+    // },
   ],
 }
