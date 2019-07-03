@@ -1,24 +1,19 @@
 import React from "react"
-import "./global.css"
-import "../../fonts/fonts.css"
+import { ContainerStyle } from "./Styles"
 
-const style = {
-  height: `100vh`,
-  width: `100%`,
-  backgroundColor: `#f1f5f8`,
-  boxSizing: `border-box`,
-  padding: `100px`,
-  display: `grid`,
-  gridTemplateColumns: `1fr 1fr`,
-  gridTemplateAreas: `"left right"`,
+import { connect } from "react-redux"
+import { getPlaylist } from "../../state/actions"
+
+class Container extends React.Component {
+  componentDidMount() {
+    const { edges: playlist } = this.props.playlist
+    const { dispatch } = this.props
+    dispatch(getPlaylist(playlist))
+  }
+  render() {
+    const { children } = this.props
+    return <ContainerStyle>{children}</ContainerStyle>
+  }
 }
 
-const Container = ({ children }) => {
-  return (
-    <div style={style} className="Container">
-      {children}
-    </div>
-  )
-}
-
-export default Container
+export default connect()(Container)

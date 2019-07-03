@@ -18,7 +18,7 @@ class Player extends React.Component {
     if (theswitch !== `off`) dispatch(turnSwitch())
   }
   render() {
-    const { theswitch } = this.props
+    const { theswitch, trackChosen } = this.props
     return (
       <Container>
         <Controls>
@@ -26,7 +26,7 @@ class Player extends React.Component {
             ref={audio => {
               this.audio = audio
             }}
-            src={playlist[0].src}
+            src={playlist[trackChosen].src}
           />
           <input
             type="button"
@@ -39,7 +39,7 @@ class Player extends React.Component {
             onClick={this.handlePause.bind(this)}
           />
         </Controls>
-        <p>Playing: {theswitch === `on` ? playlist[0].title : ""}</p>
+        <p>Playing: {theswitch === `on` ? playlist[trackChosen].title : ""}</p>
       </Container>
     )
   }
@@ -47,6 +47,7 @@ class Player extends React.Component {
 
 const mapStateToProps = state => ({
   theswitch: state.reducer.theswitch,
+  trackChosen: state.reducer.trackChosen,
 })
 
 export default connect(mapStateToProps)(Player)
