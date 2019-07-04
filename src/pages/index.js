@@ -1,15 +1,21 @@
 import React from "react"
 import { graphql } from "gatsby"
+
+/* Page One */
 import PageOne from "../components/PageOne"
 import Image from "../components/Image"
 import Player from "../components/Player"
 import Logo from "../components/Logo"
+
+/* Page Two */
+import PageTwo from "../components/PageTwo"
 import Gallery from "../components/Gallery"
 
 export default ({
   data: {
     allImageSharp: { edges },
     allMarkdownRemark,
+    allFile,
   },
 }) => {
   const { node } = edges[0]
@@ -20,7 +26,9 @@ export default ({
         <Player />
         <Image style={{ gridArea: "right" }} fluid={node.fluid} />
       </PageOne>
-      <Gallery />
+      <PageTwo gallery={allFile}>
+        <Gallery />
+      </PageTwo>
     </>
   )
 }
@@ -44,6 +52,19 @@ export const query = graphql`
             title
             src {
               relativePath
+            }
+          }
+        }
+      }
+    }
+    allFile(filter: { relativeDirectory: { eq: "Gallery" } }) {
+      edges {
+        node {
+          name
+          childImageSharp {
+            fluid {
+              src
+              ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }

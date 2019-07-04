@@ -1,5 +1,5 @@
 import React from "react"
-import { PageOneStyle } from "./Styles"
+import { Container } from "./Styled"
 
 import { connect } from "react-redux"
 import { getPlaylist } from "../../state/actions"
@@ -12,7 +12,7 @@ class PageOne extends React.Component {
   }
   render() {
     const { children } = this.props
-    return <PageOneStyle>{children}</PageOneStyle>
+    return <Container>{children}</Container>
   }
 }
 

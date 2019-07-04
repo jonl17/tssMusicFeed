@@ -1,9 +1,10 @@
-import { TURN_SWITCH, GET_PLAYLIST, CHANGE_SONG } from "./actions"
+import { TURN_SWITCH, GET_PLAYLIST, CHANGE_SONG, GET_GALLERY } from "./actions"
 
 const initialState = {
   theswitch: `off`,
   playlist: {},
   trackChosen: 0,
+  gallery: {},
 }
 
 export default (state = initialState, action) => {
@@ -16,15 +17,24 @@ export default (state = initialState, action) => {
       }
     case GET_PLAYLIST:
       var newplaylist = []
-      for (var i = 0; i < action.playlist.length; i++) {
+      action.playlist.map(item =>
         newplaylist.push({
-          title: action.playlist[i].node.frontmatter.title,
-          src: action.playlist[i].node.frontmatter.src,
+          title: item.node.frontmatter.title,
+          src: item.node.frontmatter.src,
         })
-      }
+      )
       return { ...state, playlist: newplaylist }
     case CHANGE_SONG:
       return { ...state, trackChosen: state.trackChosen + action.direction }
+    case GET_GALLERY:
+      var newgallery = []
+      action.gallery.map(item =>
+        newgallery.push({
+          name: item.node.name,
+          fluid: item.node.childImageSharp.fluid,
+        })
+      )
+      return { ...state, gallery: newgallery }
     default:
       return state
   }

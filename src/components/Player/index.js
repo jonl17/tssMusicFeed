@@ -17,9 +17,6 @@ class Player extends React.Component {
   }
   render() {
     const { trackChosen, playlist } = this.props
-    if (playlist[trackChosen] !== undefined) {
-      console.log(playlist[trackChosen].src)
-    }
     return (
       <Container>
         <Controls>

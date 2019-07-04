@@ -14,3 +14,9 @@ export const changeSong = direction => ({
   type: CHANGE_SONG,
   direction,
 })
+
+export const GET_GALLERY = "GET_GALLERY"
+export const getGallery = gallery => ({
+  type: GET_GALLERY,
+  gallery,
+})
