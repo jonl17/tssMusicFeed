@@ -1,11 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GlobalStyle } from "../components/GlobalStyle"
-import Container from "../components/Container"
+import PageOne from "../components/PageOne"
 import Image from "../components/Image"
 import Player from "../components/Player"
 import Logo from "../components/Logo"
-import "./index.css"
+import Gallery from "../components/Gallery"
 
 export default ({
   data: {
@@ -16,12 +15,12 @@ export default ({
   const { node } = edges[0]
   return (
     <>
-      <GlobalStyle />
-      <Container playlist={allMarkdownRemark}>
+      <PageOne playlist={allMarkdownRemark}>
         <Logo />
         <Player />
-        <Image fluid={node.fluid} />
-      </Container>
+        <Image style={{ gridArea: "right" }} fluid={node.fluid} />
+      </PageOne>
+      <Gallery />
     </>
   )
 }

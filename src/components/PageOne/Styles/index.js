@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const ContainerStyle = styled.div`
+export const PageOneStyle = styled.div`
   height: 100vh;
   width: 100%;
   background-color: #f1f5f8;

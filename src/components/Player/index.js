@@ -16,7 +16,7 @@ class Player extends React.Component {
     if (theswitch !== `off`) dispatch(turnSwitch())
   }
   render() {
-    const { theswitch, trackChosen, playlist } = this.props
+    const { trackChosen, playlist } = this.props
     if (playlist[trackChosen] !== undefined) {
       console.log(playlist[trackChosen].src)
     }

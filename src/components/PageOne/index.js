@@ -1,10 +1,10 @@
 import React from "react"
-import { ContainerStyle } from "./Styles"
+import { PageOneStyle } from "./Styles"
 
 import { connect } from "react-redux"
 import { getPlaylist } from "../../state/actions"
 
-class Container extends React.Component {
+class PageOne extends React.Component {
   componentDidMount() {
     const { edges: playlist } = this.props.playlist
     const { dispatch } = this.props
@@ -12,8 +12,8 @@ class Container extends React.Component {
   }
   render() {
     const { children } = this.props
-    return <ContainerStyle>{children}</ContainerStyle>
+    return <PageOneStyle>{children}</PageOneStyle>
   }
 }
 
-export default connect()(Container)
+export default connect()(PageOne)
