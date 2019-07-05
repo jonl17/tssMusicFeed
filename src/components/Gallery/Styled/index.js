@@ -15,9 +15,18 @@ export const ImageContainer = styled.div`
   position: relative;
 `
 export const HoverBox = styled.div`
+  display: grid;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  background-color: rgba(255, 105, 180, 0.5);
+  opacity: 0;
+  &&:hover {
+    opacity: 1;
+  }
+`
+export const HoverBoxText = styled.p`
+  margin: auto;
 `
