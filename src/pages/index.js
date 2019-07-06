@@ -11,40 +11,30 @@ import Logo from "../components/Logo"
 import PageTwo from "../components/PageTwo"
 import Gallery from "../components/Gallery"
 
-export default ({
-  data: {
-    allImageSharp: { edges },
-    allMarkdownRemark,
-    allFile,
-  },
-}) => {
-  const { node } = edges[0]
+/** Page Three */
+import PageThree from "../components/PageThree"
+import About from "../components/About"
+
+export default ({ data: { allMarkdownRemark, allFile } }) => {
   return (
     <>
       <PageOne playlist={allMarkdownRemark}>
         <Logo />
         <Player />
-        <Image style={{ gridArea: "right" }} fluid={node.fluid} />
+        <Image style={{ gridArea: "right" }} />
       </PageOne>
       <PageTwo gallery={allFile}>
         <Gallery />
       </PageTwo>
+      <PageThree>
+        <About />
+      </PageThree>
     </>
   )
 }
 
-export const query = graphql`
+export const MAIN_QUERY = graphql`
   query {
-    allImageSharp(filter: { fluid: { originalName: { eq: "brok-1.png" } } }) {
-      edges {
-        node {
-          fluid(traceSVG: { color: "hotpink" }) {
-            originalName
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
     allMarkdownRemark {
       edges {
         node {

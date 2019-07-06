@@ -1,6 +1,5 @@
 import React from "react"
 import { Container, ImageContainer, HoverBox, HoverBoxText } from "./Styled"
-import Img from "gatsby-image"
 
 import { connect } from "react-redux"
 
@@ -12,7 +11,11 @@ const Gallery = ({ gallery }) => {
         {gallery.map((item, index) => (
           <>
             <ImageContainer key={index}>
-              <img style={{ width: "100%" }} src={item.fluid.src} />
+              <img
+                alt={item.name}
+                style={{ width: "100%" }}
+                src={item.fluid.src}
+              />
               <HoverBox style={{ position: "absolute" }}>
                 <HoverBoxText>{item.name}</HoverBoxText>
               </HoverBox>

@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components"
 import Zig from "./zig.ttf"
-import CursorBlack from "./cursorblack.png"
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
