@@ -6,6 +6,11 @@
 const path = require(`path`)
 
 module.exports = {
+  siteMetadata: {
+    myName: "Jón Gabríel Lorange",
+    BIO:
+      "Musician, web developer and drawing bastard from Iceland. Straight from the hood, with nuthin' but the good stuff. Keep rockin' !",
+  },
   plugins: [
     {
       resolve: `gatsby-transformer-remark`,

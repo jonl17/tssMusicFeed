@@ -13,11 +13,11 @@ export const GIF = styled.img`
   transform: rotate(-5deg);
 `
 export const BioContainer = styled.div`
-  height: 100%;
   width: 100%;
   box-sizing: border-box;
   padding: 50px;
   transform: rotate(5deg);
+  margin: auto;
 `
 export const Name = styled.p`
   font-size: 18px;
