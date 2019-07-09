@@ -2,7 +2,7 @@ import React from "react"
 import { Container, Controls } from "./Styled"
 
 import { connect } from "react-redux"
-import { turnSwitch } from "../../state/actions"
+import { turnSwitch, togglePlayer } from "../../state/actions"
 
 class Player extends React.Component {
   handlePlay() {
@@ -15,10 +15,22 @@ class Player extends React.Component {
     this.audio.pause()
     if (theswitch !== `off`) dispatch(turnSwitch())
   }
+  handleSizeChange() {
+    const { dispatch, playerFullscreen } = this.props
+    console.log(playerFullscreen)
+    dispatch(togglePlayer(!playerFullscreen))
+  }
   render() {
-    const { trackChosen, playlist } = this.props
+    const { trackChosen, playlist, playerFullscreen } = this.props
+    console.log(playerFullscreen)
     return (
-      <Container>
+      <Container fullscreen={playerFullscreen}>
+        <p>
+          Track chosen:
+          {playlist[trackChosen] !== undefined
+            ? playlist[trackChosen].title
+            : ""}
+        </p>
         <Controls>
           <audio
             ref={audio => {
@@ -30,24 +42,10 @@ class Player extends React.Component {
                 : ""
             }
           />
-          <input
-            type="button"
-            value="PLAY"
-            onClick={this.handlePlay.bind(this)}
-          />
-          <input
-            type="button"
-            value="PAUSE"
-            onClick={this.handlePause.bind(this)}
-          />
+          <p onClick={this.handlePlay.bind(this)}>play</p>
+          <p onClick={this.handlePause.bind(this)}>pause</p>
+          <p onClick={this.handleSizeChange.bind(this)}>Size</p>
         </Controls>
-        <p>
-          Track chosen:
-          {playlist[trackChosen] !== undefined
-            ? playlist[trackChosen].title
-            : ""}
-        </p>
-        <p>Next</p>
       </Container>
     )
   }
@@ -57,6 +55,7 @@ const mapStateToProps = state => ({
   theswitch: state.reducer.theswitch,
   playlist: state.reducer.playlist,
   trackChosen: state.reducer.trackChosen,
+  playerFullscreen: state.reducer.playerFullscreen,
 })
 
 export default connect(mapStateToProps)(Player)

@@ -4,7 +4,6 @@ import { Container, ImageContainer, HoverBox, HoverBoxText } from "./Styled"
 import { connect } from "react-redux"
 
 const Gallery = ({ gallery }) => {
-  console.log(gallery)
   if (gallery[0] !== undefined) {
     return (
       <Container>
@@ -16,7 +15,7 @@ const Gallery = ({ gallery }) => {
                 style={{ width: "100%" }}
                 src={item.fluid.src}
               />
-              <HoverBox style={{ position: "absolute" }}>
+              <HoverBox key={"box" + index} style={{ position: "absolute" }}>
                 <HoverBoxText>{item.name}</HoverBoxText>
               </HoverBox>
             </ImageContainer>

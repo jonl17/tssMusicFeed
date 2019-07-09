@@ -20,3 +20,9 @@ export const getGallery = gallery => ({
   type: GET_GALLERY,
   gallery,
 })
+
+export const TOGGLE_PLAYER = "TOGGLE_PLAYER"
+export const togglePlayer = toggler => ({
+  type: TOGGLE_PLAYER,
+  toggler,
+})

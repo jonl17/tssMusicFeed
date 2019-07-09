@@ -1,10 +1,17 @@
-import { TURN_SWITCH, GET_PLAYLIST, CHANGE_SONG, GET_GALLERY } from "./actions"
+import {
+  TURN_SWITCH,
+  GET_PLAYLIST,
+  CHANGE_SONG,
+  GET_GALLERY,
+  TOGGLE_PLAYER,
+} from "./actions"
 
 const initialState = {
   theswitch: `off`,
   playlist: {},
   trackChosen: 0,
   gallery: {},
+  playerFullscreen: true,
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +42,8 @@ export default (state = initialState, action) => {
         })
       )
       return { ...state, gallery: newgallery }
+    case TOGGLE_PLAYER:
+      return { ...state, playerFullscreen: action.toggler }
     default:
       return state
   }

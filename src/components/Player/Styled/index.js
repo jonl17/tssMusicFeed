@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Container = styled.div`
   position: fixed;
@@ -6,14 +6,24 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-
+  transition: 0.8s;
   background-color: rgb(16, 16, 16);
   color: gold;
+  display: grid;
+  height: 50px;
+  /* top small mode */
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "left middle right";
+  /* fullscreen mode */
+  ${props =>
+    props.fullscreen &&
+    css`
+      height: 100%;
+    `}
 `
 export const Controls = styled.div`
-  justify-self: center;
+  grid-area: middle;
+  display: flex;
+  justify-content: space-evenly;
 `
