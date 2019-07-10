@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Controls } from "./Styled"
+import { Container, Controls, Play, Pause, Size, Track } from "./Styled"
 
 import { connect } from "react-redux"
 import { turnSwitch, togglePlayer } from "../../state/actions"
@@ -25,12 +25,12 @@ class Player extends React.Component {
     console.log(playerFullscreen)
     return (
       <Container fullscreen={playerFullscreen}>
-        <p>
+        <Track>
           Track chosen:
           {playlist[trackChosen] !== undefined
             ? playlist[trackChosen].title
             : ""}
-        </p>
+        </Track>
         <Controls>
           <audio
             ref={audio => {
@@ -42,10 +42,13 @@ class Player extends React.Component {
                 : ""
             }
           />
-          <p onClick={this.handlePlay.bind(this)}>play</p>
-          <p onClick={this.handlePause.bind(this)}>pause</p>
-          <p onClick={this.handleSizeChange.bind(this)}>Size</p>
+          <Play onClick={this.handlePlay.bind(this)} />
+          <Pause onClick={this.handlePause.bind(this)} />
         </Controls>
+        <Size
+          fullscreen={playerFullscreen}
+          onClick={this.handleSizeChange.bind(this)}
+        />
       </Container>
     )
   }
